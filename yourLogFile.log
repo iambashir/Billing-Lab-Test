@@ -422,3 +422,6 @@ Consider defining a bean of type 'org.modelmapper.ModelMapper' in your configura
 2023-10-09 13:16:34.836  INFO 6060 --- [http-nio-8069-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-10-09 13:16:34.836  INFO 6060 --- [http-nio-8069-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-10-09 13:16:34.841  INFO 6060 --- [http-nio-8069-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-10-09 14:12:14.942  INFO 6060 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-09 14:12:14.947  INFO 6060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-09 14:12:14.954  INFO 6060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
