@@ -14,9 +14,9 @@ public class BillingLabTest {
 
 
   }
-  @Bean
+/*  @Bean
   public RestTemplate getRestTemplate() {
     return new RestTemplate();
-  }
+  }*/
 
 }
