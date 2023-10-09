@@ -1,7 +1,8 @@
-package com.spring.feature.frontend;
+package com.spring.feature.billing.lab.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.spring.feature.billing.lab.entity.Contact;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +12,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class PersonDto{
+public class PersonRestDto{
 
-    private Long id;
     @JsonProperty("create_date")
     private LocalDate createDate;
     private List<Contact> lines = new ArrayList<>();

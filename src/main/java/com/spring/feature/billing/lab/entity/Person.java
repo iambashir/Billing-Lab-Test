@@ -1,5 +1,6 @@
-package com.spring.feature.frontend;
+package com.spring.feature.billing.lab.entity;
 
+import com.spring.feature.billing.lab.entity.Contact;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

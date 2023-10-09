@@ -1,4 +1,8 @@
-package com.spring.feature.frontend;
+package com.spring.feature.billing.lab.service;
+
+import com.spring.feature.billing.lab.entity.Person;
+import com.spring.feature.billing.lab.dto.PersonDto;
+import com.spring.feature.billing.lab.dto.PersonRestDto;
 
 import java.time.LocalDate;
 import java.util.List;

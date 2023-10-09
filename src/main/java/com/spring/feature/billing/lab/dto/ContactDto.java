@@ -1,4 +1,4 @@
-package com.spring.feature.frontend;
+package com.spring.feature.billing.lab.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
