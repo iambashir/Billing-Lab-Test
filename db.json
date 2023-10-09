@@ -1,0 +1,51 @@
+
+
+
+[
+
+  "This is a comment.",
+  "Save this payload api: localhost:4444/v1/api/save-emp",
+
+  {
+    "firstName": "Bashir",
+    "lastName": "Hossain",
+    "email": "bashir@gmail.com",
+    "userid": "bashir",
+    "password": "1234",
+    "empAddress": [
+      {
+        "location": "Rasulpur",
+        "homeDistrict": "Narayanganj",
+        "zipCode": 1205
+      }
+    ]
+  },
+  {
+    "firstName": "Abdul",
+    "lastName": "Ali",
+    "email": "ali@gmail.com",
+    "userid": "ali",
+    "password": "1234",
+    "empAddress": [
+      {
+        "location": "Mollapara",
+        "homeDistrict": "Narayanganj",
+        "zipCode": 1206
+      }
+    ]
+  },
+  {
+    "firstName": "Akkas",
+    "lastName": "Mia",
+    "email": "akkas@gmail.com",
+    "userid": "akkas",
+    "password": "1234",
+    "empAddress": [
+      {
+        "location": "Kalurghat",
+        "homeDistrict": "Barishal",
+        "zipCode": 1206
+      }
+    ]
+  }
+]
