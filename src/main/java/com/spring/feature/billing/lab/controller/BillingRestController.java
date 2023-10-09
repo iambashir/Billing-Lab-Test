@@ -59,12 +59,12 @@ public class BillingRestController {
     }*/
 
 
-    /**
+/*    *//**
      * ------- Get employee between dates ------
-     */
+     *//*
     @GetMapping("/get/lab/data/{startDate}/{endDate}")
     public ResponseEntity<List<BillingModelDto>> getBillBetweenDates(
-            /**------ @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") -----**/
+            *//**------ @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") -----**//*
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate) {
         try {
@@ -73,7 +73,7 @@ public class BillingRestController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
 
 
     /**-------- Edit employee -----------*/

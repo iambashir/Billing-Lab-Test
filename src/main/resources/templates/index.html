@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+</head>
+<body>
+<div class="container shadow mt-5 bg-light py-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <form method="post" th:action="@{/save}" th:object="${person}" class="mb-3">
+                <input type="hidden" th:field="${person.id}">
+                <h3 class="text-center mb-3">Create Test</h3>
+                <hr>
+                <a class="btn btn-success btn-sm" th:href="@{/get}"> Back to the list </a>
+                <hr>
+
+                <div class="row fw-bold">
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientName" class="form-label">&#10066; Patient Name</label>
+                        <input type="text" class="form-control" id="patientName" th:field="${person.patientName}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="invoiceNumber" class="form-label">&#10066; Invoice Number</label>
+                        <input type="text" class="form-control" id="invoiceNumber" th:field="${person.invoiceNumber}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientIdentifier" class="form-label">&#10066; Patient ID</label>
+                        <input type="text" class="form-control" id="patientIdentifier" th:field="${person.patientIdentifier}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="age" class="form-label">&#10066; Age</label>
+                        <input type="number" class="form-control" id="age" th:field="${person.age}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="sex" class="form-label">&#10066; Gender</label>
+                        <select type="text" class="form-control" id="sex" th:field="${person.sex}" >
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+<!--                    <div class="col-md-3 mb-3">
+                        <label for="sex" class="form-label">&#10066; Is Refund ?</label>
+                        <select type="text" class="form-control" id="isRefund" th:field="${person.isRefund}" >
+                            <option value="false">Not Refunded</option>
+                            <option value="true">Refunded</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="sex" class="form-label">&#10066; Is Free Patient ?</label>
+                        <select type="text" class="form-control" id="isFreePatient" th:field="${person.isFreePatient}" >
+                            <option value="true">Paid Patient</option>
+                            <option value="false">Free Patient</option>
+                        </select>
+                    </div>-->
+
+                    <div class="col-md-3 mt-5">
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="isRefund" type="checkbox" value="true" name="isRefund" > Is Refund ?
+                        </label>
+                    </div>
+
+                    <div class="col-md-3 mt-5">
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="isFreePatient" type="checkbox" value="false" name="isFreePatient" > Is Free Patient ?
+                        </label>
+                    </div>
+
+                </div>
+
+
+
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive update-contacts">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>&#10066; Test Name</th>
+                                    <th>
+                                        <button type="button" name="addContact" class="btn btn-outline-success"
+                                                data-update-contacts-url="/addContact">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblContacts">
+                                <tr th:fragment="contacts" th:each="contact,rowStat : ${person.lines}">
+                                    <td>
+                                        <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
+                                        <input class="custom-select form-control"
+                                                th:field="${person.lines[__${rowStat.index}__].productName}"></input>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-success"
+                                                data-update-contacts-url="/addContact">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <button type="button" name="removeContact" th:value="${rowStat.index}"
+                                                class="btn btn-outline-danger"
+                                                data-update-contacts-url="/removeContact">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit form</button> &nbsp;
+                <button type="reset" class="btn btn-primary">Clear</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Invoke the corresponding URL to update the contacts section using Ajax
+        $('.update-contacts').on('click', 'button[data-update-contacts-url]', function () {
+            let url = $(this).data('update-contacts-url');
+
+            // adding the row index, needed when deleting a contact
+            let formData = $('form').serializeArray();
+            let param = {};
+            param["name"] = $(this).attr('name');
+            param["value"] = $(this).val();
+            formData.push(param);
+
+            // updating the contact section
+            $('#tblContacts').load(url, formData);
+        });
+
+        // autodismiss alerts
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 4000);
+    });
+</script>
+
+</body>
+</html>
