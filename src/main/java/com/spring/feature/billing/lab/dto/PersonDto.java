@@ -22,9 +22,9 @@ public class PersonDto{
     @JsonProperty("patient_name")
     private String patientName;
     @JsonProperty("is_refund")
-    private boolean isRefund;
+    private boolean Refund;
     @JsonProperty("is_free_patient")
-    private boolean isFreePatient;
+    private boolean FreePatient;
     @JsonProperty("invoice_number")
     private String invoiceNumber;
     @JsonProperty("patient_identifier")
