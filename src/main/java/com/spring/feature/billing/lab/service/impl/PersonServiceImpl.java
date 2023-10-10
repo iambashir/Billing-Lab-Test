@@ -33,6 +33,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Object savePerson(PersonDto personDto) {
         Person person = modelMapper.map(personDto, Person.class);
+        person.setActiveStatus(ActiveStatus.ACTIVE.getValue());
         personRepository.save(person);
         return null;
     }

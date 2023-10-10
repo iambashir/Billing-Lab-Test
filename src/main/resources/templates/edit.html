@@ -68,13 +68,13 @@
 
                     <div class="col-md-3 mt-5">
                         <label class="form-check-label">
-                            <input class="form-check-input" id="isRefund" type="checkbox" name="person.isRefund" th:checked="${person.isRefund}" > Is Refund ?
+                            <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
                         </label>
                     </div>
 
                     <div class="col-md-3 mt-5">
                         <label class="form-check-label">
-                            <input class="form-check-input" id="isFreePatient" type="checkbox" name="person.isFreePatient" th:checked="${person.isFreePatient}"> Is Free Patient ?
+                            <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
                         </label>
                     </div>
 
