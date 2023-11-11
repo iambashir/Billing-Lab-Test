@@ -43,28 +43,12 @@
 
                     <div class="col-md-3 mb-3">
                         <label for="sex" class="form-label">&#10066; Gender</label>
-                        <select type="text" class="form-control" id="sex" th:field="*{sex}" >
+                        <select class="form-select" id="sex" th:field="*{sex}" >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
-
-<!--                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Refund ?</label>
-                        <select type="text" class="form-control" id="isRefund" th:field="${person.isRefund}" >
-                            <option value="false">Not Refunded</option>
-                            <option value="true">Refunded</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Free Patient ?</label>
-                        <select type="text" class="form-control" id="isFreePatient" th:field="${person.isFreePatient}" >
-                            <option value="true">Paid Patient</option>
-                            <option value="false">Free Patient</option>
-                        </select>
-                    </div>-->
 
                     <div class="col-md-3 mt-5">
                         <label class="form-check-label">
@@ -103,7 +87,7 @@
                                     <td>
                                         <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
                                         <input class="custom-select form-control"
-                                                th:field="${person.lines[__${rowStat.index}__].productName}"></input>
+                                               th:field="${person.lines[__${rowStat.index}__].productName}"></input>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-success"
@@ -131,8 +115,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {
