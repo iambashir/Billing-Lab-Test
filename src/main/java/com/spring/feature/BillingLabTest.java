@@ -10,7 +10,7 @@ public class BillingLabTest {
 
   public static void main(String[] args) {
     SpringApplication.run(BillingLabTest.class, args);
-      System.out.println("Project is running .....................");
+      System.out.println("Project is running successfully .....................");
 
 
   }
