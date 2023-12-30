@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    List<Person> findByCreateDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Person> findByCreateDateBetweenAndActiveStatus(LocalDate startDate, LocalDate endDate,int status);
+
+    List<Person>findAllByActiveStatus(int status);
 
 }

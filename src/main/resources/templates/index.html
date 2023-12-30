@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <form method="post" th:action="@{/save}" th:object="${person}" class="mb-3">
-                <input type="hidden" th:field="${person.id}">
+                <input type="hidden" th:field="*{id}">
                 <h3 class="text-center mb-3">Create Test</h3>
                 <hr>
                 <a class="btn btn-success btn-sm" th:href="@{/get}"> Back to the list </a>
@@ -23,58 +23,42 @@
 
                     <div class="col-md-3 mb-3">
                         <label for="patientName" class="form-label">&#10066; Patient Name</label>
-                        <input type="text" class="form-control" id="patientName" th:field="${person.patientName}">
+                        <input type="text" class="form-control" id="patientName" th:field="*{patientName}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="invoiceNumber" class="form-label">&#10066; Invoice Number</label>
-                        <input type="text" class="form-control" id="invoiceNumber" th:field="${person.invoiceNumber}">
+                        <input type="text" class="form-control" id="invoiceNumber" th:field="*{invoiceNumber}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="patientIdentifier" class="form-label">&#10066; Patient ID</label>
-                        <input type="text" class="form-control" id="patientIdentifier" th:field="${person.patientIdentifier}">
+                        <input type="text" class="form-control" id="patientIdentifier" th:field="*{patientIdentifier}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="age" class="form-label">&#10066; Age</label>
-                        <input type="number" class="form-control" id="age" th:field="${person.age}">
+                        <input type="number" class="form-control" id="age" th:field="*{age}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="sex" class="form-label">&#10066; Gender</label>
-                        <select type="text" class="form-control" id="sex" th:field="${person.sex}" >
+                        <select class="form-select" id="sex" th:field="*{sex}" >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
 
-<!--                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Refund ?</label>
-                        <select type="text" class="form-control" id="isRefund" th:field="${person.isRefund}" >
-                            <option value="false">Not Refunded</option>
-                            <option value="true">Refunded</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Free Patient ?</label>
-                        <select type="text" class="form-control" id="isFreePatient" th:field="${person.isFreePatient}" >
-                            <option value="true">Paid Patient</option>
-                            <option value="false">Free Patient</option>
-                        </select>
-                    </div>-->
-
                     <div class="col-md-3 mt-5">
                         <label class="form-check-label">
-                            <input class="form-check-input" id="isRefund" type="checkbox" value="true" name="isRefund" > Is Refund ?
+                            <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
                         </label>
                     </div>
 
                     <div class="col-md-3 mt-5">
                         <label class="form-check-label">
-                            <input class="form-check-input" id="isFreePatient" type="checkbox" value="false" name="isFreePatient" > Is Free Patient ?
+                            <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
                         </label>
                     </div>
 
@@ -103,7 +87,7 @@
                                     <td>
                                         <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
                                         <input class="custom-select form-control"
-                                                th:field="${person.lines[__${rowStat.index}__].productName}"></input>
+                                               th:field="${person.lines[__${rowStat.index}__].productName}"></input>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-success"
@@ -131,8 +115,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {

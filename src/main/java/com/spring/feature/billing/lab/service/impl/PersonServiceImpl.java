@@ -5,6 +5,7 @@ import com.spring.feature.billing.lab.dto.PersonDto;
 import com.spring.feature.billing.lab.dto.PersonRestDto;
 import com.spring.feature.billing.lab.entity.Contact;
 import com.spring.feature.billing.lab.entity.Person;
+import com.spring.feature.billing.lab.enums.ActiveStatus;
 import com.spring.feature.billing.lab.repository.PersonRepository;
 import com.spring.feature.billing.lab.service.PersonService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Object savePerson(PersonDto personDto) {
         Person person = modelMapper.map(personDto, Person.class);
+        person.setActiveStatus(ActiveStatus.ACTIVE.getValue());
         personRepository.save(person);
         return null;
     }
@@ -48,7 +50,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonDto> getAllData() {
-        List<Person> persons = personRepository.findAll();
+        List<Person> persons = personRepository.findAllByActiveStatus(ActiveStatus.ACTIVE.getValue());
         return persons.stream().map(person -> modelMapper.map(person, PersonDto.class))
                 .collect(Collectors.toList());
     }
@@ -60,14 +62,16 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePerson(Long id) {
-        Person persons = personRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Employee not found"));
-        personRepository.delete(persons);
+        Optional<Person> persons = personRepository.findById(id);
+        Person person = persons.get();
+//        Person person=new Person();
+        person.setActiveStatus(ActiveStatus.INACTIVE.getValue());
+        personRepository.save(person);
     }
 
     @Override
     public List<PersonRestDto> getBillBetweenDates(LocalDate startDate, LocalDate endDate) {
-        List<Person> billBetween = personRepository.findByCreateDateBetween(startDate, endDate);
+        List<Person> billBetween = personRepository.findByCreateDateBetweenAndActiveStatus(startDate, endDate,ActiveStatus.ACTIVE.getValue());
         return billBetween.stream().map(bills -> modelMapper.map(bills, PersonRestDto.class))
                 .collect(Collectors.toList());
     }

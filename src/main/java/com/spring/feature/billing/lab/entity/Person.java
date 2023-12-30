@@ -1,6 +1,7 @@
 package com.spring.feature.billing.lab.entity;
 
 import com.spring.feature.billing.lab.entity.Contact;
+import com.spring.feature.billing.lab.enums.ActiveStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class Person {
     private String invoiceNumber;
     private String patientIdentifier;
     private String sex;
+    private Integer activeStatus;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contact> lines = new ArrayList<>();
@@ -39,6 +41,9 @@ public class Person {
     @PrePersist
     public void setPreInsertData() {
         this.createDate = LocalDate.now();
+        if(this.activeStatus==null){
+            this.activeStatus= ActiveStatus.ACTIVE.getValue();
+        }
     }
 
 
