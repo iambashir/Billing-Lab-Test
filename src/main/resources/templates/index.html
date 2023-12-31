@@ -42,6 +42,36 @@
                     </div>
 
                     <div class="col-md-3 mb-3">
+                        <label for="contactNumber" class="form-label">&#10066; Contact Number</label>
+                        <input type="number" class="form-control" id="contactNumber" th:field="*{contactNumber}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="email" class="form-label">&#10066; Email</label>
+                        <input type="email" class="form-control" id="email" th:field="*{email}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientId" class="form-label">&#10066; Patient Root Id</label>
+                        <input type="text" class="form-control" id="patientId" th:field="*{patientId}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="brnNumber" class="form-label">&#10066; Birth REG</label>
+                        <input type="text" class="form-control" id="brnNumber" th:field="*{brnNumber}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="nationalId" class="form-label">&#10066; NID</label>
+                        <input type="text" class="form-control" id="nationalId" th:field="*{nationalId}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientCategory" class="form-label">&#10066; Patient Category</label>
+                        <input type="text" class="form-control" id="patientCategory" th:field="*{patientCategory}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
                         <label for="sex" class="form-label">&#10066; Gender</label>
                         <select class="form-select" id="sex" th:field="*{sex}" >
                             <option value="Male">Male</option>
