@@ -23,6 +23,10 @@ public class Contact {
     private UUID uuid;
     @JsonProperty("product_name")
     private String productName;
+    @JsonProperty("category_name")
+    private String categoryName;
+    @JsonProperty("price_unit")
+    private String priceUnit;
 
 
 }

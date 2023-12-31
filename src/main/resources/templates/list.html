@@ -17,25 +17,22 @@
 
 
     <style>
-        .largerCheckbox {
-            width: 25px;
-            height: 25px;
-        }
+
     </style>
 
 </head>
 
 
-<body class="container  mt-4">
+<body class="m-2">
 
 
 <h4 class="text-center">All Patient Information</h4>
 <hr>
 <a class="btn btn-info btn-sm mb-2" th:href="@{/}"> Create Test </a>
-<table class="table table-striped border-dark table-bordered table-hover" id="dataTable1" style="width:100%;">
+<table class="table table-striped border-dark table-bordered table-hover" id="dataTable1" style="width:100%; font-size:0.8vw; margin-left: 0px;">
     <thead class="bg-secondary bg-opacity-25">
     <tr>
-        <th>SN</th>
+        <th>Id</th>
         <th>Patient Name</th>
         <th>Invoice Number</th>
         <th>Patient Identifier</th>
@@ -44,6 +41,12 @@
         <th>Is Free</th>
         <th>Age</th>
         <th>Created Date</th>
+        <th>patientId</th>
+        <th>contactNumber</th>
+        <th>brnNumber</th>
+        <th>nationalId</th>
+        <th>email</th>
+        <th>patientCategory</th>
         <th>Test Name</th>
         <th>Actions</th>
 
@@ -52,24 +55,28 @@
     </thead>
     <tbody>
     <tr th:each="info,iter: ${getAllData}">
-        <td th:text="${iter.index + 1}"></td>
+        <!--<td th:text="${iter.index + 1}"></td>-->
+        <td th:text="${info.id}"></td>
         <td th:text="${info.patientName}"></td>
         <td th:text="${info.invoiceNumber}"></td>
         <td th:text="${info.patientIdentifier}"></td>
         <td th:text="${info.sex}"></td>
-        <!--<td>
-            <input type="checkbox" class="custom-control-input largerCheckbox btn disabled" th:checked="${info.is_refund}"/>
-        </td>-->
-        <!--<td>
-    <input type="text" class="custom-control-input largerCheckbox btn disabled" th:text="${info.isFreePatient}"/>
-</td>-->
         <td th:text="${info.isRefund}"></td>
         <td th:text="${info.isFreePatient}"></td>
         <td th:text="${info.age}"></td>
         <td th:text="${info.createDate}"></td>
+        <td th:text="${info.patientId}"></td>
+        <td th:text="${info.contactNumber}"></td>
+        <td th:text="${info.brnNumber}"></td>
+        <td th:text="${info.nationalId}"></td>
+        <td th:text="${info.email}"></td>
+        <td th:text="${info.patientCategory}"></td>
+
         <td>
             <ul th:each="address : ${info.lines}">
                 <li th:text="${address.productName}"></li>
+                <li th:text="${address.categoryName}"></li>
+                <li th:text="${address.priceUnit}"></li>
             </ul>
         </td>
         <td>

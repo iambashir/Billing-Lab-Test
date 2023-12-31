@@ -35,6 +35,14 @@ public class Person {
     private String sex;
     private Integer activeStatus;
 
+    private String patientId;
+    private String contactNumber;
+    private String brnNumber;
+    private String nationalId;
+    private String email;
+    private String patientCategory;
+
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contact> lines = new ArrayList<>();
 

@@ -30,4 +30,17 @@ public class PersonRestDto{
     private String patientIdentifier;
     private String sex;
 
+    @JsonProperty("patientId")
+    private String patientId;
+    @JsonProperty("contactNumber")
+    private String contactNumber;
+    @JsonProperty("brnNumber")
+    private String brnNumber;
+    @JsonProperty("nationalId")
+    private String nationalId;
+    @JsonProperty("email")
+    private String email;
+    @JsonProperty("patientCategory")
+    private String patientCategory;
+
 }
