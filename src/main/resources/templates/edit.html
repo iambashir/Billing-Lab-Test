@@ -4,17 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Test</title>
+    <title>Laboratory Billing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <style>
+        .background{
+            background-image: url('/img/bg13.jpg')!important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: 'Numans', sans-serif;
+            /*background: #a8a4a4;*/
+        }
+        input:hover{
+            /*opacity: 100%;*/
+            background-color: #c9c8c8;
+        }
+    </style>
+
 </head>
-<body>
-<div class="container shadow mt-5 bg-light py-2">
-    <div class="row justify-content-center">
+<body class="background">
+<div class="container opacity-75 shadow mt-5 mb-5 bg-light py-2 rounded">
+    <div class="row justify-content-center p-2">
         <div class="col-lg-12">
             <form method="post" th:action="@{/save}" th:object="${person}" class="mb-3">
-                <input type="hidden" th:field="${person.id}">
-                <h3 class="text-center mb-3">Update Test</h3>
+                <input type="hidden" th:field="*{id}">
+                <h3 class="text-center mb-3">Update Billing</h3>
                 <hr>
                 <a class="btn btn-success btn-sm" th:href="@{/get}"> Back to the list </a>
                 <hr>
@@ -23,68 +39,82 @@
 
                     <div class="col-md-3 mb-3">
                         <label for="patientName" class="form-label">&#10066; Patient Name</label>
-                        <input type="text" class="form-control" id="patientName" th:field="${person.patientName}">
+                        <input type="text" class="form-control" id="patientName" th:field="*{patientName}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="invoiceNumber" class="form-label">&#10066; Invoice Number</label>
-                        <input type="text" class="form-control" id="invoiceNumber" th:field="${person.invoiceNumber}">
+                        <input type="text" class="form-control" id="invoiceNumber" th:field="*{invoiceNumber}">
                     </div>
 
                     <div class="col-md-3 mb-3">
-                        <label for="patientIdentifier" class="form-label">&#10066; Patient ID</label>
-                        <input type="text" class="form-control" id="patientIdentifier" th:field="${person.patientIdentifier}">
+                        <label for="patientIdentifier" class="form-label">&#10066; Patient Identifier</label>
+                        <input type="text" class="form-control" id="patientIdentifier" th:field="*{patientIdentifier}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="age" class="form-label">&#10066; Age</label>
-                        <input type="number" class="form-control" id="age" th:field="${person.age}">
+                        <input type="number" class="form-control" id="age" th:field="*{age}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="contactNumber" class="form-label">&#10066; Contact Number</label>
+                        <input type="number" class="form-control" id="contactNumber" th:field="*{contactNumber}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="email" class="form-label">&#10066; Email</label>
+                        <input type="email" class="form-control" id="email" th:field="*{email}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientId" class="form-label">&#10066; Patient Root Id</label>
+                        <input type="text" class="form-control" id="patientId" th:field="*{patientId}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="brnNumber" class="form-label">&#10066; Birth REG</label>
+                        <input type="text" class="form-control" id="brnNumber" th:field="*{brnNumber}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="nationalId" class="form-label">&#10066; NID</label>
+                        <input type="text" class="form-control" id="nationalId" th:field="*{nationalId}">
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="patientCategory" class="form-label">&#10066; Patient Category</label>
+                        <input type="text" class="form-control" id="patientCategory" th:field="*{patientCategory}">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="sex" class="form-label">&#10066; Gender</label>
-                        <select type="text" class="form-control" id="sex" th:field="${person.sex}" >
+                        <select class="form-select" id="sex" th:field="*{sex}" >
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
 
-<!--                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Refund ?</label>
-                        <select type="text" class="form-control" id="isRefund" th:field="${person.isRefund}" >
-                            <option value="false">Not Refunded</option>
-                            <option value="true">Refunded</option>
-                        </select>
+
+                    <div class="row col-md-12">
+                        <div class="col-md-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
+                            </label>
+                        </div>
+
+                        <div class="col-md-3 ms-2">
+                            <label class="form-check-label">
+                                <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="col-md-3 mb-3">
-                        <label for="sex" class="form-label">&#10066; Is Free Patient ?</label>
-                        <select type="text" class="form-control" id="isFreePatient" th:field="${person.isFreePatient}" >
-                            <option value="true">Paid Patient</option>
-                            <option value="false">Free Patient</option>
-                        </select>
-                    </div>-->
 
-                    <div class="col-md-3 mt-5">
-                        <label class="form-check-label">
-                            <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
-                        </label>
-                    </div>
-
-                    <div class="col-md-3 mt-5">
-                        <label class="form-check-label">
-                            <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
-                        </label>
-                    </div>
 
                 </div>
 
-                <!--<div class="col-md-3 mb-3">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="person.isFreePatient" th:value="${person.isFreePatient}" > Remember me
-                    </label>
-                </div>-->
 
 
                 <hr>
@@ -95,12 +125,15 @@
                                 <thead>
                                 <tr>
                                     <th>&#10066; Test Name</th>
+                                    <th>&#10066; Department</th>
+                                    <th>&#10066; Price</th>
                                     <th>
                                         <button type="button" name="addContact" class="btn btn-outline-success"
                                                 data-update-contacts-url="/addContact">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </th>
+
                                 </tr>
                                 </thead>
                                 <tbody id="tblContacts">
@@ -109,6 +142,16 @@
                                         <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
                                         <input class="custom-select form-control"
                                                th:field="${person.lines[__${rowStat.index}__].productName}"></input>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
+                                        <input class="custom-select form-control"
+                                               th:field="${person.lines[__${rowStat.index}__].categoryName}"></input>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
+                                        <input class="custom-select form-control"
+                                               th:field="${person.lines[__${rowStat.index}__].priceUnit}"></input>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-success"
@@ -136,8 +179,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {

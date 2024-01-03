@@ -93,7 +93,7 @@ public class PersonController {
     /**
      * ------- Get employee between dates ------
      */
-    @GetMapping("/skh/get/lab/data/{startDate}/{endDate}.form")
+    @GetMapping("/BD_Hospital_SKH/get/lab/data/{startDate}/{endDate}.form")
     @ResponseBody
     public ResponseEntity<List<PersonRestDto>> getBillBetweenDates(
             /**------ @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") -----**/

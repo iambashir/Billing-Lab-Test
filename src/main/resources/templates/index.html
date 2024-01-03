@@ -4,17 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Test</title>
+    <title>Laboratory Billing</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+
+    <style>
+        .background{
+            background-image: url('/img/bg13.jpg')!important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: 'Numans', sans-serif;
+            /*background: #a8a4a4;*/
+        }
+        input:hover{
+            /*opacity: 100%;*/
+            background-color: #c9c8c8;
+        }
+        select:hover{
+            /*opacity: 100%;*/
+            background-color: #c9c8c8;
+        }
+    </style>
+
 </head>
-<body>
-<div class="container shadow mt-5 bg-light py-2">
-    <div class="row justify-content-center">
+<body class="background">
+<div class="container opacity-75 shadow mt-5 mb-5 bg-light py-2 rounded">
+    <div class="row justify-content-center p-2">
         <div class="col-lg-12">
             <form method="post" th:action="@{/save}" th:object="${person}" class="mb-3">
                 <input type="hidden" th:field="*{id}">
-                <h3 class="text-center mb-3">Create Test</h3>
+                <h3 class="text-center mb-3">Laboratory Billing</h3>
                 <hr>
                 <a class="btn btn-success btn-sm" th:href="@{/get}"> Back to the list </a>
                 <hr>
@@ -32,7 +52,7 @@
                     </div>
 
                     <div class="col-md-3 mb-3">
-                        <label for="patientIdentifier" class="form-label">&#10066; Patient ID</label>
+                        <label for="patientIdentifier" class="form-label">&#10066; Patient Identifier</label>
                         <input type="text" class="form-control" id="patientIdentifier" th:field="*{patientIdentifier}">
                     </div>
 
@@ -80,17 +100,22 @@
                         </select>
                     </div>
 
-                    <div class="col-md-3 mt-5">
-                        <label class="form-check-label">
-                            <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
-                        </label>
+
+                    <div class="row col-md-12">
+                        <div class="col-md-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" th:field="*{Refund}" id="Refund" type="checkbox" value="" name="Refund" > Is Refund ?
+                            </label>
+                        </div>
+
+                        <div class="col-md-3 ms-2">
+                            <label class="form-check-label">
+                                <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
+                            </label>
+                        </div>
                     </div>
 
-                    <div class="col-md-3 mt-5">
-                        <label class="form-check-label">
-                            <input class="form-check-input" th:field="*{FreePatient}" id="FreePatient" type="checkbox" value=""  name="FreePatient"> Is Free Patient ?
-                        </label>
-                    </div>
+
 
                 </div>
 
@@ -104,12 +129,15 @@
                                 <thead>
                                 <tr>
                                     <th>&#10066; Test Name</th>
+                                    <th>&#10066; Department</th>
+                                    <th>&#10066; Price</th>
                                     <th>
                                         <button type="button" name="addContact" class="btn btn-outline-success"
                                                 data-update-contacts-url="/addContact">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </th>
+
                                 </tr>
                                 </thead>
                                 <tbody id="tblContacts">
@@ -117,7 +145,17 @@
                                     <td>
                                         <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
                                         <input class="custom-select form-control"
-                                               th:field="${person.lines[__${rowStat.index}__].productName}"></input>
+                                               th:field="${person.lines[__${rowStat.index}__].productName}">
+                                    </td>
+                                    <td>
+                                        <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
+                                        <input class="custom-select form-control"
+                                               th:field="${person.lines[__${rowStat.index}__].categoryName}">
+                                    </td>
+                                    <td>
+                                        <input type="hidden" th:field="${person.lines[__${rowStat.index}__].uuid}">
+                                        <input class="custom-select form-control"
+                                               th:field="${person.lines[__${rowStat.index}__].priceUnit}">
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-success"
@@ -137,8 +175,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit form</button> &nbsp;
-                <button type="reset" class="btn btn-primary">Clear</button>
+                <button type="submit" class="btn btn-primary btn-sm">Submit form</button> &nbsp;
+                <button type="reset" class="btn btn-info btn-sm">Clear</button>
             </form>
         </div>
     </div>
