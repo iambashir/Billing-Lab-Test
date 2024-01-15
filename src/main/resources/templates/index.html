@@ -7,10 +7,28 @@
     <title>Create Test</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <style>
+        .background{
+            background-image: url('/img/bg13.jpg')!important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: 'Numans', sans-serif;
+            /*background: #a8a4a4;*/
+        }
+        input:hover{
+            /*opacity: 100%;*/
+            background-color: #c9c8c8;
+        }
+        select:hover{
+            /*opacity: 100%;*/
+            background-color: #c9c8c8;
+        }
+    </style>
 </head>
-<body>
-<div class="container shadow mt-5 bg-light py-2">
-    <div class="row justify-content-center">
+<body class="background">
+<div class="container opacity-75 shadow mt-5 mb-5 bg-light py-2 rounded">
+    <div class="row justify-content-center p-2">
         <div class="col-lg-12">
             <form method="post" th:action="@{/save}" th:object="${person}" class="mb-3">
                 <input type="hidden" th:field="*{id}">
