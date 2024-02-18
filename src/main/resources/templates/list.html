@@ -17,60 +17,108 @@
 
 
     <style>
-
+        .background{
+            background-image: url('/img/bg2.jpg');
+            background-size: cover;
+            background-repeat: repeat;
+            height: 100vh;
+            font-family: 'Numans', sans-serif;
+        }
     </style>
 
 </head>
 
 
-<body class="">
+<body class="ps-4 pe-4 pt-3 pb-4 background ">
 
+<div class="">
+    <div class="row">
+        <div class="col-md-4 text-left">
+            <a class="btn btn-success btn-sm mb-2" th:href="@{/}"> Create Test </a>
+        </div>
+        <div class="col-md-4">
+            <h4 class="text-center text-info">All Patient Information</h4>
+        </div>
+        <div class="col-md-4">
 
-<h4 class="text-center">All Patient Information</h4>
+        </div>
+    </div>
+</div>
+
 <hr>
-<a class="btn btn-info btn-sm mb-2" th:href="@{/}"> Create Test </a>
-<table class="table table-striped border-dark table-bordered table-hover table-responsive" id="dataTable1" style="width:100%; font-size:0.8vw; margin-left: 0px;">
+
+<form th:action="@{/lims/list}" th:method="post">
+    <div>
+        <div class="row" style="display:flex;">
+            <div class="col-sm-12" style="display:flex;">
+                <div>
+                    <lable style="font-size: small;margin-left: 6px">Start Date</lable>
+                    <input class="form-control" id="collectionDate" style="width: 100%; height: 40px;"
+                           th:name="collectionDate"
+                           th:value="${syncDate1}"
+                           type="date"/>
+                </div>
+
+                <div style=" margin-left: 5px;">
+                    <lable style="font-size: small;margin-left: 6px;">End Date</lable>
+                    <input class="form-control" id="collectionDate2" style="width: 100%; height: 40px;"
+                           th:name="collectionDate2"
+                           th:value="${collectedDate}"
+                           type="date"/>
+                </div>
+                <div class="text-start ms-2" style="display: flex; align-items: end">
+                    <button class="btn btn-primary" style="" type="submit">Find Data</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<table class="table table-striped border-dark table-bordered table-hover table-responsive shadow-lg bg-light opacity-75" id="dataTable1" style="width:100%; font-size:1vw; margin-left: 0px;">
     <thead class="bg-secondary bg-opacity-25">
     <tr>
-        <th>Id</th>
+        <th class="text-center">Id</th>
         <th>Patient Name</th>
         <th>Invoice Number</th>
         <th>Patient Identifier</th>
         <th>Gender</th>
-        <th>Is Refund</th>
-        <th>Is Free</th>
+<!--        <th>Is Refund</th>-->
+<!--        <th>Is Free</th>-->
         <th>Age</th>
         <th>Created Date</th>
-        <th>patientId</th>
-        <th>contactNumber</th>
-        <th>brnNumber</th>
-        <th>nationalId</th>
-        <th>email</th>
-        <th>patientCategory</th>
+<!--        <th>patientId</th>-->
+<!--        <th>contactNumber</th>-->
+<!--        <th>brnNumber</th>-->
+<!--        <th>nationalId</th>-->
+<!--        <th>email</th>-->
+<!--        <th>patientCategory</th>-->
         <th>Test Name</th>
-        <th>Actions</th>
+        <th style="width: 120px;">Actions</th>
 
 
     </tr>
     </thead>
     <tbody>
-    <tr th:each="info,iter: ${getAllData}">
+    <tr class="align-middle" th:each="info,iter: ${getAllData}">
         <!--<td th:text="${iter.index + 1}"></td>-->
-        <td th:text="${info.id}"></td>
+        <td class="text-center" th:text="${info.id}"></td>
         <td th:text="${info.patientName}"></td>
         <td th:text="${info.invoiceNumber}"></td>
         <td th:text="${info.patientIdentifier}"></td>
         <td th:text="${info.sex}"></td>
-        <td th:text="${info.isRefund}"></td>
-        <td th:text="${info.isFreePatient}"></td>
+<!--        <td th:text="${info.isRefund}"></td>-->
+<!--        <td th:text="${info.isFreePatient}"></td>-->
         <td th:text="${info.age}"></td>
         <td th:text="${info.createDate}"></td>
-        <td th:text="${info.patientId}"></td>
-        <td th:text="${info.contactNumber}"></td>
-        <td th:text="${info.brnNumber}"></td>
-        <td th:text="${info.nationalId}"></td>
-        <td th:text="${info.email}"></td>
-        <td th:text="${info.patientCategory}"></td>
+<!--        <td th:text="${info.patientId}"></td>-->
+<!--        <td th:text="${info.contactNumber}"></td>-->
+<!--        <td th:text="${info.brnNumber}"></td>-->
+<!--        <td th:text="${info.nationalId}"></td>-->
+<!--        <td th:text="${info.email}"></td>-->
+<!--        <td th:text="${info.patientCategory}"></td>-->
 
         <td>
             <ul th:each="address : ${info.lines}">
@@ -88,7 +136,66 @@
     </tr>
     </tbody>
 </table>
+<hr>
+<table class="table table-striped border-dark table-bordered table-hover table-responsive bg-light opacity-75" id="dataTable2" style="width:100%; font-size:1vw; margin-left: 0px;">
+    <thead class="bg-secondary bg-opacity-25">
+    <tr>
+        <th class="text-center">Id</th>
+<!--        <th>Patient Name</th>-->
+<!--        <th>Invoice Number</th>-->
+<!--        <th>Patient Identifier</th>-->
+<!--        <th>Gender</th>-->
+        <th>Is Refund</th>
+        <th>Is Free</th>
+<!--        <th>Age</th>-->
+<!--        <th>Created Date</th>-->
+        <th>patientId</th>
+        <th>contactNumber</th>
+        <th>brnNumber</th>
+        <th>nationalId</th>
+        <th>email</th>
+        <th>patientCategory</th>
+<!--        <th>Test Name</th>-->
+        <th style="width: 120px;">Actions</th>
 
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="align-middle" th:each="info,iter: ${getAllData}">
+        <!--<td th:text="${iter.index + 1}"></td>-->
+        <td class="text-center" th:text="${info.id}"></td>
+<!--        <td th:text="${info.patientName}"></td>-->
+<!--        <td th:text="${info.invoiceNumber}"></td>-->
+<!--        <td th:text="${info.patientIdentifier}"></td>-->
+<!--        <td th:text="${info.sex}"></td>-->
+        <td th:text="${info.isRefund}"></td>
+        <td th:text="${info.isFreePatient}"></td>
+<!--        <td th:text="${info.age}"></td>-->
+<!--        <td th:text="${info.createDate}"></td>-->
+        <td th:text="${info.patientId}"></td>
+        <td th:text="${info.contactNumber}"></td>
+        <td th:text="${info.brnNumber}"></td>
+        <td th:text="${info.nationalId}"></td>
+        <td th:text="${info.email}"></td>
+        <td th:text="${info.patientCategory}"></td>
+
+<!--        <td>-->
+<!--            <ul th:each="address : ${info.lines}">-->
+<!--                <li th:text="${address.productName}"></li>-->
+<!--                <li th:text="${address.categoryName}"></li>-->
+<!--                <li th:text="${address.priceUnit}"></li>-->
+<!--            </ul>-->
+<!--        </td>-->
+        <td>
+            <a class="btn btn-success mb-1 me-1" th:href="@{/edit/{id}(id=${info.id})}"> Edit </a>
+            <a class="btn btn-danger" th:href="@{/delete/{id}(id=${info.id})}"> Delete </a>
+        </td>
+
+
+    </tr>
+    </tbody>
+</table>
 </body>
 
 
@@ -113,54 +220,21 @@
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
 
-
+<!-------- Table 1-------->
 <script type="text/javascript">
     $(document).ready(function () {
-        var table = $('#dataTable1').DataTable({
-            size: 30,
-            lengthChange: false,
-            select: true,
-            //dom: 'Blfrtip',
-            lengthMenu: [
-                [10, 25, 50, 100, -1],
-                ['10 Rows', '25 Rows', '50 Rows', '100 Rows', 'All']
-            ],
-            // dom: 'Bfrtip',
-            buttons: [
-                'pageLength',
-                {extend: 'pdf', text: 'PDF'},
-                {extend: 'csv', text: 'CSV'},
-                //{ extend: 'excel', text: 'Excel' },
-                {extend: 'colvis', text: 'Column'},
-                {extend: 'copy', text: 'Copy'},
-                {extend: 'print', text: 'Print'},
-
-                // Export TSV file
-                // {
-                //     extend: 'copyHtml5', text: 'TSV',
-                //     extend: 'csvHtml5',
-                //     fieldSeparator: '\t',
-                //     extension: '.tsv'
-                // },
-
-                {
-                    // extend: 'json',
-                    text: 'Json',
-                    action: function (e, dt, button, config) {
-                        var data = dt.buttons.exportData();
-
-                        $.fn.dataTable.fileSave(
-                            new Blob([JSON.stringify(data)]),
-                            'Export.json'
-                        );
-                    }
-                },
-
-            ],
-
+        $('#dataTable1').DataTable({
+            // order: [0, 'desc'],
         });
-        table.buttons().container()
-            .appendTo('#dataTable1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+
+<!-------- Table 2-------->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dataTable2').DataTable({
+            // order: [0, 'desc'],
+        });
     });
 </script>
 
