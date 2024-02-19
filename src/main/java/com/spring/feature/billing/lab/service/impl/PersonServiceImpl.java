@@ -49,8 +49,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<PersonDto> getAllData() {
-        List<Person> persons = personRepository.findAllByActiveStatus(ActiveStatus.ACTIVE.getValue());
+    public List<PersonDto> getAllData(LocalDate date) {
+        List<Person> persons = personRepository.findByCreateDateBetweenAndActiveStatus(date, date,ActiveStatus.ACTIVE.getValue());
         return persons.stream().map(person -> modelMapper.map(person, PersonDto.class))
                 .collect(Collectors.toList());
     }
@@ -74,6 +74,13 @@ public class PersonServiceImpl implements PersonService {
         List<Person> billBetween = personRepository.findByCreateDateBetweenAndActiveStatus(startDate, endDate,ActiveStatus.ACTIVE.getValue());
         return billBetween.stream().map(bills -> modelMapper.map(bills, PersonRestDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Person> dayTodayLimsData(LocalDate startDate, LocalDate endDate) {
+        List<Person> billBetween = personRepository.findByCreateDateBetweenAndActiveStatus(startDate, endDate,ActiveStatus.ACTIVE.getValue());
+
+        return billBetween;
     }
 
 }

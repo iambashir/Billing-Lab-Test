@@ -5,6 +5,8 @@ import com.spring.feature.billing.lab.entity.Person;
 import com.spring.feature.billing.lab.dto.PersonDto;
 import com.spring.feature.billing.lab.dto.PersonRestDto;
 import com.spring.feature.billing.lab.service.PersonService;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,43 @@ public class PersonController {
 
     @GetMapping("/get")
     public String allData(Model model) {
-        model.addAttribute("getAllData", personService.getAllData());
+
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(currentDate.format(dateFormat));
+        model.addAttribute("collectedDate", date);
+
+        //======== 3 Days early date =========//
+        LocalDate today = LocalDate.now();
+        LocalDate earlyDate = today.plusDays(-3);
+        model.addAttribute("syncDate1", earlyDate);
+
+        model.addAttribute("getAllData", personService.getAllData(date));
         return "list";
     }
+
+    @PostMapping("/get")
+    public String dayTodayLimsData(Model model,
+        @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("collectionDate") String fromdate,
+        @DateTimeFormat(pattern = "yyyy-MM-dd") @RequestParam("collectionDate2") String toDate){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+
+        String date = currentDate.format(dateFormat);
+        model.addAttribute("collectedDate", date);
+
+        //======== 3 Days early date =========//
+        LocalDate today = LocalDate.now();
+        LocalDate earlyDate = today.plusDays(-3);
+        model.addAttribute("syncDate1", earlyDate);
+
+        List<Person> personList = personService.dayTodayLimsData(
+            LocalDate.parse(fromdate, dateFormat), LocalDate.parse(toDate, dateFormat));
+        model.addAttribute("getAllData", personList);
+
+        return "list";
+    }
+
 
     @PostMapping("/addContact")
     public String addContact(Person person) {

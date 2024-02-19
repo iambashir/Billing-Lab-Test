@@ -47,12 +47,12 @@
 
 <hr>
 
-<form th:action="@{/lims/list}" th:method="post">
+<form th:action="@{/get}" th:method="post">
     <div>
         <div class="row" style="display:flex;">
             <div class="col-sm-12" style="display:flex;">
                 <div>
-                    <lable style="font-size: small;margin-left: 6px">Start Date</lable>
+                    <lable style="font-size: small;margin-left: 6px;color: white">Start Date</lable>
                     <input class="form-control" id="collectionDate" style="width: 100%; height: 40px;"
                            th:name="collectionDate"
                            th:value="${syncDate1}"
@@ -60,7 +60,7 @@
                 </div>
 
                 <div style=" margin-left: 5px;">
-                    <lable style="font-size: small;margin-left: 6px;">End Date</lable>
+                    <lable style="font-size: small;margin-left: 6px;color: white">End Date</lable>
                     <input class="form-control" id="collectionDate2" style="width: 100%; height: 40px;"
                            th:name="collectionDate2"
                            th:value="${collectedDate}"

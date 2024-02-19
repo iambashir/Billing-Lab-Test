@@ -18,7 +18,7 @@ public interface PersonService {
 
     void removeContact(Person person, Integer contactIndex);
 
-    List<PersonDto> getAllData();
+    List<PersonDto> getAllData(LocalDate date);
 
     Optional<Person> editPerson(Long id);
 
@@ -27,4 +27,5 @@ public interface PersonService {
     List<PersonRestDto> getBillBetweenDates(LocalDate startDate, LocalDate endDate);
 
 
+    List<Person> dayTodayLimsData(LocalDate startDate, LocalDate endDate);
 }
