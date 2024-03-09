@@ -28,4 +28,6 @@ public interface PersonService {
 
 
     List<Person> dayTodayLimsData(LocalDate startDate, LocalDate endDate);
+
+  List<PersonRestDto> getBillBetweenDatesAndDepartment(LocalDate startDate, LocalDate endDate, String department);
 }

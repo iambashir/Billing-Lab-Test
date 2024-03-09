@@ -8,6 +8,7 @@ import com.spring.feature.billing.lab.entity.Person;
 import com.spring.feature.billing.lab.enums.ActiveStatus;
 import com.spring.feature.billing.lab.repository.PersonRepository;
 import com.spring.feature.billing.lab.service.PersonService;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -82,5 +83,29 @@ public class PersonServiceImpl implements PersonService {
 
         return billBetween;
     }
+
+    @Override
+    public List<PersonRestDto> getBillBetweenDatesAndDepartment(LocalDate startDate,
+        LocalDate endDate, String department) {
+        List<Person> finalPersonList = new ArrayList<>();
+        List<Person> billBetween = personRepository.findByCreateDateBetweenAndActiveStatus(startDate, endDate,ActiveStatus.ACTIVE.getValue());
+        if (department != null){
+            List<Person> finalPersonList1 = finalPersonList;
+            billBetween.forEach(bill -> {
+                List<Contact> contactList = bill.getLines().stream().filter(line -> line.getCategoryName().equals(department)).collect(
+                    Collectors.toList());
+                if (!contactList.isEmpty()){
+                    bill.setLines(contactList);
+                    finalPersonList1.add(bill);
+                }
+            });
+        }
+        else {
+            finalPersonList = billBetween;
+        }
+        return finalPersonList.stream().map(bills -> modelMapper.map(bills, PersonRestDto.class))
+            .collect(Collectors.toList());
+    }
+
 
 }
