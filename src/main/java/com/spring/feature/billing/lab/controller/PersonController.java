@@ -146,13 +146,13 @@ public class PersonController {
     /**
      * ------- Get employee between dates ------
      */
-    @GetMapping("/get-department/lab/data/{startDate}/{endDate}/{department}")
+    @GetMapping("/get-department/lab/data/{startDate}/{endDate}")
     @ResponseBody
     public ResponseEntity<List<PersonRestDto>> getBillBetweenDatesAndDepartment(
         /**------ @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") -----**/
         @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
         @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
-        @PathVariable String department) {
+        @RequestParam(required = false) String department) {
         try {
             List<PersonRestDto> bills = personService.getBillBetweenDatesAndDepartment(startDate, endDate, department);
             return new ResponseEntity<>(bills, HttpStatus.OK);
